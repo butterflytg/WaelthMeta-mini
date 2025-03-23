@@ -4,11 +4,11 @@ from datetime import datetime
 import gradio as gr
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import logging
+from db.SQLiteDB import SQLiteDB  # 修改导入语句以匹配正确的文件名
 
 # 从agent.workflow模块导入WorkFlow类，该类可能包含系统的核心业务逻辑
 from agent.workflow import WorkFlow
-# 从db.SQLiteDB模块导入SQLiteDB类，用于与SQLite数据库进行交互
-from db.SQLiteDB import SQLiteDB
 # 从log.logger模块导入Logger类，用于记录系统运行日志
 from log.logger import Logger
 
@@ -138,6 +138,37 @@ def chat():
             "message": "很抱歉！服务器出现错误，请稍后重试。",
             "user_name": user_name
         }), 500
+
+@app.route('/api/monthly_stats')
+def get_monthly_stats():
+    try:
+        year = request.args.get('year', type=int)
+        if not year:
+            year = datetime.now().year
+            
+        # 获取指定年份的月度统计数据
+        monthly_data = sqLite.get_monthly_stats(year)  # 修改这里，使用正确的变量名
+        
+        # 格式化数据
+        formatted_data = []
+        for month in range(1, 13):
+            month_data = next((item for item in monthly_data if item['month'] == month), {
+                'month': month,
+                'income': 0,
+                'expense': 0
+            })
+            formatted_data.append(month_data)
+            
+        return jsonify({
+            'code': 0,
+            'data': formatted_data
+        })
+    except Exception as e:
+        logger.error(f"获取月度统计数据失败: {str(e)}")
+        return jsonify({
+            'code': 1,
+            'message': '获取月度统计数据失败'
+        })
 
 # 如果该脚本作为主程序运行
 if __name__ == "__main__":

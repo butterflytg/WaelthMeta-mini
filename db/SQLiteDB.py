@@ -143,7 +143,55 @@ class SQLiteDB:
         self.conn.close()
         print("数据库连接已关闭。")
 
+    def get_monthly_stats(self, year):
+        """获取指定年份的月度统计数据"""
+        try:
+            cursor = self.conn.cursor()
+            
+            # 查询收入数据
+            income_query = """
+            SELECT strftime('%m', timestamp) as month, SUM(amount) as total
+            FROM bill
+            WHERE income_expense = 'income'
+            AND strftime('%Y', timestamp) = ?
+            GROUP BY month
+            """
+            
+            # 查询支出数据
+            expense_query = """
+            SELECT strftime('%m', timestamp) as month, SUM(amount) as total
+            FROM bill
+            WHERE income_expense = 'expense'
+            AND strftime('%Y', timestamp) = ?
+            GROUP BY month
+            """
+            
+            cursor.execute(income_query, (str(year),))
+            income_data = {row[0]: row[1] for row in cursor.fetchall()}
+            
+            cursor.execute(expense_query, (str(year),))
+            expense_data = {row[0]: row[1] for row in cursor.fetchall()}
+            
+            # 合并数据
+            monthly_stats = []
+            for month in range(1, 13):
+                month_str = f"{month:02d}"
+                monthly_stats.append({
+                    'month': month,
+                    'income': float(income_data.get(month_str, 0)),
+                    'expense': float(expense_data.get(month_str, 0))
+                })
+            
+            # print(monthly_stats)
+                
+            return monthly_stats
+            
+        except Exception as e:
+            print(f"获取月度统计数据失败: {str(e)}")
+            return []
+
 # 测试创建数据库
 if __name__ == "__main__":
     db = SQLiteDB("storedInfo.db")
+    db.get_monthly_stats(2025)
     db.close()

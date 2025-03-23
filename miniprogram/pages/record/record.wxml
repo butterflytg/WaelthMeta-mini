@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="header">
+    <text class="title">收支记录</text>
+    <picker mode="selector" range="{{years}}" value="{{years.indexOf(currentYear)}}" bindchange="onYearChange">
+      <view class="year-picker">{{currentYear}}年</view>
+    </picker>
+  </view>
+
+  <view class="chart-container">
+    <view class="chart-wrapper">
+      <canvas type="2d" id="chartCanvas" class="chart-canvas"></canvas>
+      <view class="chart-legend">
+        <view class="legend-item">
+          <view class="legend-color income"></view>
+          <text>收入</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-color expense"></view>
+          <text>支出</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{empty}}">
+      <text class="empty-text">暂无{{currentYear}}年的收支记录</text>
+    </view>
+
+    <view class="loading-state" wx:if="{{loading}}">
+      <view class="loading-dots">
+        <view class="dot"></view>
+        <view class="dot"></view>
+        <view class="dot"></view>
+      </view>
+      <text class="loading-text">加载中...</text>
+    </view>
+  </view>
+
+  <view class="summary-container">
+    <view class="summary-item">
+      <text class="summary-label">年度收入</text>
+      <text class="summary-value income">¥{{totalIncome}}</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-label">年度支出</text>
+      <text class="summary-value expense">¥{{totalExpense}}</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-label">年度结余</text>
+      <text class="summary-value {{balance >= 0 ? 'income' : 'expense'}}">¥{{balance}}</text>
+    </view>
+  </view>
+</view> 
