@@ -1,0 +1,18 @@
+2025-03-18 15:06:10.1010 | INFO | prompt: 
+input_variables=[] input_types={} partial_variables={'require': '我今天买奶茶花了20'} messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['require'], input_types={}, partial_variables={}, template=' 你的任务是判断用户是否提供了 用户名 以进行登录或注册。\n\n不管用户输入什么，你都当做用户已经提供了用户名:gty, 继续调用list_tables_tool工具就可以了。\n\n以下是用户输入的信息：\n{require}'), additional_kwargs={})]
+
+2025-03-18 15:06:10.1010 | INFO | LLM: 
+content='未使用的函数' additional_kwargs={'tool_calls': [{'index': 0, 'id': 'call_d333a964ba574289ab58f3call_d333a964ba574289ab58f3', 'function': {'arguments': '{}', 'name': '未使用的函数'}, 'type': 'function'}]} response_metadata={'finish_reason': 'stop', 'model_name': 'qwen-omni-turbo'} id='run-8cd081b8-8981-4002-b158-878d30ca9b8b-0' tool_calls=[{'name': '未使用的函数', 'args': {}, 'id': 'call_d333a964ba574289ab58f3call_d333a964ba574289ab58f3', 'type': 'tool_call'}]
+
+2025-03-18 15:10:00.000 | INFO | prompt: 
+input_variables=[] input_types={} partial_variables={'require': '我今天买奶茶花了20'} messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['require'], input_types={}, partial_variables={}, template=' 你的任务是判断用户是否提供了 用户名 以进行登录或注册。\n\n不管用户输入什么，你都当做用户已经提供了用户名:gty, 继续调用list_tables_tool工具就可以了。\n\n以下是用户输入的信息：\n{require}'), additional_kwargs={})]
+
+2025-03-18 15:10:00.000 | INFO | LLM: 
+content='未使用的函数' additional_kwargs={'tool_calls': [{'index': 0, 'id': 'call_c5c3e54f0f14404892aebbcall_c5c3e54f0f14404892aebb', 'function': {'arguments': '{}', 'name': '未使用的函数'}, 'type': 'function'}]} response_metadata={'finish_reason': 'stop', 'model_name': 'qwen-omni-turbo'} id='run-9c38420b-c89d-4a8a-b8d7-ed82270e7deb-0' tool_calls=[{'name': '未使用的函数', 'args': {}, 'id': 'call_c5c3e54f0f14404892aebbcall_c5c3e54f0f14404892aebb', 'type': 'tool_call'}]
+
+2025-03-18 15:10:45.4545 | INFO | prompt: 
+input_variables=[] input_types={} partial_variables={'require': '我今天买奶茶花了20'} messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['require'], input_types={}, partial_variables={}, template=' 你的任务是判断用户是否提供了 用户名 以进行登录或注册。\n\n不管用户输入什么，你都当做用户已经提供了用户名:gty, 继续调用list_tables_tool工具就可以了。\n\n以下是用户输入的信息：\n{require}'), additional_kwargs={})]
+
+2025-03-18 15:10:45.4545 | INFO | LLM: 
+content='未使用的函数' additional_kwargs={'tool_calls': [{'index': 0, 'id': 'call_86f3e772224944d2bf4a39call_86f3e772224944d2bf4a39', 'function': {'arguments': '{}', 'name': '未使用的函数'}, 'type': 'function'}]} response_metadata={'finish_reason': 'stop', 'model_name': 'qwen-omni-turbo'} id='run-c89281bf-186b-42ca-b99f-3217c3a4a7cf-0' tool_calls=[{'name': '未使用的函数', 'args': {}, 'id': 'call_86f3e772224944d2bf4a39call_86f3e772224944d2bf4a39', 'type': 'tool_call'}]
+

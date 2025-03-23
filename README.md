@@ -37,7 +37,7 @@ WealthMate是一个基于Python开发的个人财务管理助手，它能够帮�
 ## 安装说明
 1. 克隆项目代码
 ```bash
-git clone https://github.com/butterflytg/WealthMeta1.git
+git clone https://github.com/butterflytg/WealthMeta.git
 cd WealthMate
 ```
 

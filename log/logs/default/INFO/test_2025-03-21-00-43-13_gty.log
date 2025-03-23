@@ -1,0 +1,18 @@
+2025-03-21 00:44:00.000 | INFO | prompt: 
+input_variables=[] input_types={} partial_variables={'require': '登录gty'} messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['require'], input_types={}, partial_variables={}, template=' 你的任务是判断用户是否提供了 用户名 以进行登录或注册。\n\n- **如果用户提供了 用户名**，请调用list_tables_tool工具。\n- **如果用户未提供 用户名**，调用SubmitFinalAnswer，直接返回一条提示信息，要求用户输入 用户名 以继续操作。\n如果你不能明确用户是否提供了 用户名，请调用SubmitFinalAnswer，返回一条提示信息，要求用户明确是否提供了 用户名。\n\n\n以下是用户输入的信息：\n{require}'), additional_kwargs={})]
+
+2025-03-21 00:44:00.000 | INFO | LLM: 
+content='' additional_kwargs={'tool_calls': [{'index': 0, 'id': 'call_2c3c46ecaf6b496abf22b8', 'function': {'arguments': '{"tool_input": ""}', 'name': 'sql_db_list_tables'}, 'type': 'function'}]} response_metadata={'finish_reason': 'tool_calls', 'model_name': 'Qwen/QwQ-32B'} id='run-2ee7658a-5e5d-4461-9d20-1b3f082283d3-0' tool_calls=[{'name': 'sql_db_list_tables', 'args': {'tool_input': ''}, 'id': 'call_2c3c46ecaf6b496abf22b8', 'type': 'tool_call'}] usage_metadata={'input_tokens': 0, 'output_tokens': 0, 'total_tokens': 0, 'input_token_details': {}, 'output_token_details': {}}
+
+2025-03-21 00:45:01.011 | INFO | prompt: 
+input_variables=[] input_types={} partial_variables={'require': '登录gty'} messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['require'], input_types={}, partial_variables={}, template=' 你的任务是判断用户是否提供了 用户名 以进行登录或注册。\n\n- **如果用户提供了 用户名**，请调用list_tables_tool工具。\n- **如果用户未提供 用户名**，调用SubmitFinalAnswer，直接返回一条提示信息，要求用户输入 用户名 以继续操作。\n如果你不能明确用户是否提供了 用户名，请调用SubmitFinalAnswer，返回一条提示信息，要求用户明确是否提供了 用户名。\n\n\n以下是用户输入的信息：\n{require}'), additional_kwargs={})]
+
+2025-03-21 00:45:01.011 | INFO | LLM: 
+content='' additional_kwargs={'tool_calls': [{'index': 0, 'id': 'call_74043b87eed1445ba6c865', 'function': {'arguments': '{"tool_input": "")', 'name': 'sql_db_list_tables'}, 'type': 'function'}]} response_metadata={} id='run-050f809f-bc49-4e39-a8e9-80496f409ca0-0' tool_calls=[{'name': 'sql_db_list_tables', 'args': {'tool_input': ''}, 'id': 'call_74043b87eed1445ba6c865', 'type': 'tool_call'}] usage_metadata={'input_tokens': 0, 'output_tokens': 0, 'total_tokens': 0, 'input_token_details': {}, 'output_token_details': {}}
+
+2025-03-21 00:53:19.1919 | INFO | prompt: 
+input_variables=[] input_types={} partial_variables={'require': '登录用户名gty'} messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['require'], input_types={}, partial_variables={}, template=' 你的任务是判断用户是否提供了 用户名 以进行登录或注册。\n\n- **如果用户提供了 用户名**，请调用list_tables_tool工具。\n- **如果用户未提供 用户名**，调用SubmitFinalAnswer，直接返回一条提示信息，要求用户输入 用户名 以继续操作。\n如果你不能明确用户是否提供了 用户名，请调用SubmitFinalAnswer，返回一条提示信息，要求用户明确是否提供了 用户名。\n\n\n以下是用户输入的信息：\n{require}'), additional_kwargs={})]
+
+2025-03-21 00:53:19.1919 | INFO | LLM: 
+content='' additional_kwargs={'tool_calls': [{'index': 0, 'id': 'call_8503cb7270384b54b9cd77', 'function': {'arguments': '{"tool_input": ""}', 'name': 'sql_db_list_tables'}, 'type': 'function'}]} response_metadata={'finish_reason': 'tool_calls', 'model_name': 'Qwen/QwQ-32B'} id='run-cad29e0c-bee4-4783-aa68-33ebfa550d21-0' tool_calls=[{'name': 'sql_db_list_tables', 'args': {'tool_input': ''}, 'id': 'call_8503cb7270384b54b9cd77', 'type': 'tool_call'}] usage_metadata={'input_tokens': 0, 'output_tokens': 0, 'total_tokens': 0, 'input_token_details': {}, 'output_token_details': {}}
+

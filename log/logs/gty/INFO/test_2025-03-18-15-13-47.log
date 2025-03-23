@@ -1,0 +1,6 @@
+2025-03-18 15:14:02.022 | INFO | prompt: 
+input_variables=[] input_types={} partial_variables={'require': '我今天买衣服花了500'} messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['require'], input_types={}, partial_variables={}, template=' 你的任务是判断用户是否提供了 用户名 以进行登录或注册。\n\n不管用户输入什么，你都当做用户已经提供了用户名:gty, 继续调用list_tables_tool工具就可以了。\n\n以下是用户输入的信息：\n{require}'), additional_kwargs={})]
+
+2025-03-18 15:14:02.022 | INFO | LLM: 
+content='未使用的函数' additional_kwargs={'tool_calls': [{'index': 0, 'id': 'call_a57ebae2f566487c8afc98call_a57ebae2f566487c8afc98', 'function': {'arguments': '{}', 'name': '未使用的函数'}, 'type': 'function'}]} response_metadata={'finish_reason': 'stop', 'model_name': 'qwen-omni-turbo'} id='run-6f798e5d-905b-4e34-9a62-ca9ecbd24e8b-0' tool_calls=[{'name': '未使用的函数', 'args': {}, 'id': 'call_a57ebae2f566487c8afc98call_a57ebae2f566487c8afc98', 'type': 'tool_call'}]
+

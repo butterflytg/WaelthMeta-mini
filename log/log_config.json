@@ -1,0 +1,8 @@
+{
+  "log_dir": "./log/logs/",
+  "log_level": "INFO",
+  "log_format": "{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}",
+  "compression": "zip",
+  "rotation": "10 MB",
+  "retention": "30 days"
+}

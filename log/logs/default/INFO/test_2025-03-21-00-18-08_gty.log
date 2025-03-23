@@ -1,0 +1,6 @@
+2025-03-21 00:18:39.3939 | INFO | prompt: 
+input_variables=[] input_types={} partial_variables={'require': '登录gty'} messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['require'], input_types={}, partial_variables={}, template=' 你的任务是判断用户是否提供了 用户名 以进行登录或注册。\n\n- **如果用户提供了 用户名**，请调用list_tables_tool工具。\n- **如果用户未提供 用户名**，调用SubmitFinalAnswer，直接返回一条提示信息，要求用户输入 用户名 以继续操作。\n如果你不能明确用户是否提供了 用户名，请调用SubmitFinalAnswer，返回一条提示信息，要求用户明确是否提供了 用户名。\n\n\n以下是用户输入的信息：\n{require}'), additional_kwargs={})]
+
+2025-03-21 00:18:39.3939 | INFO | LLM: 
+content='' additional_kwargs={'tool_calls': [{'index': 0, 'id': 'call_6b3a38eb688042d39163bb', 'function': {'arguments': '{"final_answer": {"answer": "请提供用户名以继续操作。"}}', 'name': 'SubmitFinalAnswer'}, 'type': 'function'}]} response_metadata={'finish_reason': 'tool_calls', 'model_name': 'qwen-max'} id='run-56695453-6f91-4a3d-8d47-ba2408851519-0' tool_calls=[{'name': 'SubmitFinalAnswer', 'args': {'final_answer': {'answer': '请提供用户名以继续操作。'}}, 'id': 'call_6b3a38eb688042d39163bb', 'type': 'tool_call'}]
+
