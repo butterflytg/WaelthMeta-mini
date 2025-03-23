@@ -1,6 +1,23 @@
 <view class="container">
+  <view class="header">
+    <text class="title">财小助</text>
+    <text class="subtitle">你的智能记账助手</text>
+  </view>
+
   <view class="chat-container">
     <scroll-view scroll-y="true" class="chat-list" scroll-into-view="{{scrollToMessage}}">
+      <block wx:if="{{messages.length === 0}}">
+        <view class="welcome-section">
+          <image class="welcome-image" src="/images/welcome.png" mode="aspectFit"></image>
+          <text class="welcome-text">欢迎使用财小助！</text>
+          <text class="welcome-subtext">试试这些示例：</text>
+          <view class="example-list">
+            <view class="example-item" wx:for="{{examples}}" wx:key="index" bindtap="useExample" data-example="{{item}}">
+              <text class="example-text">{{item}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
       <block wx:for="{{messages}}" wx:key="index">
         <view class="message {{item.type === 'user' ? 'user-message' : 'assistant-message'}}" id="msg-{{index}}">
           <view class="message-content">{{item.content}}</view>
@@ -19,13 +36,16 @@
   <view class="input-container">
     <picker bindchange="onStyleChange" value="{{styleIndex}}" range="{{styles}}">
       <view class="style-picker">
-        <text>风格：{{styles[styleIndex]}}</text>
+        <text class="style-label">对话风格：</text>
+        <text class="style-value">{{styles[styleIndex]}}</text>
       </view>
     </picker>
     
     <view class="input-box">
-      <input type="text" value="{{inputValue}}" bindinput="onInput" placeholder="请输入消息..." confirm-type="send" bindconfirm="sendMessage" disabled="{{isLoading}}"/>
-      <button class="send-btn" bindtap="sendMessage" disabled="{{isLoading}}">{{isLoading ? '发送中...' : '发送'}}</button>
+      <input type="text" value="{{inputValue}}" bindinput="onInput" placeholder="输入记账信息..." confirm-type="send" bindconfirm="sendMessage" disabled="{{isLoading}}"/>
+      <button class="send-btn {{isLoading ? 'sending' : ''}}" bindtap="sendMessage" disabled="{{isLoading}}">
+        {{isLoading ? '发送中...' : '发送'}}
+      </button>
     </view>
   </view>
 </view> 

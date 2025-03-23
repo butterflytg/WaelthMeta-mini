@@ -5,6 +5,26 @@
   background: #f6f6f6;
 }
 
+.header {
+  padding: 30rpx;
+  background: #007AFF;
+  color: white;
+  text-align: center;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
 .chat-container {
   flex: 1;
   padding: 20rpx;
@@ -13,6 +33,55 @@
 
 .chat-list {
   height: 100%;
+}
+
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 40rpx;
+}
+
+.welcome-image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 30rpx;
+}
+
+.welcome-text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.welcome-subtext {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+
+.example-list {
+  width: 100%;
+}
+
+.example-item {
+  background: white;
+  padding: 20rpx 30rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+  transition: all 0.3s;
+}
+
+.example-item:active {
+  transform: scale(0.98);
+  background: #f0f0f0;
+}
+
+.example-text {
+  font-size: 28rpx;
+  color: #333;
 }
 
 .message {
@@ -32,38 +101,58 @@
 .message-content {
   max-width: 70%;
   padding: 20rpx;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
   word-wrap: break-word;
+  font-size: 28rpx;
+  line-height: 1.5;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
 }
 
 .user-message .message-content {
   background: #007AFF;
   color: white;
+  border-bottom-right-radius: 4rpx;
 }
 
 .assistant-message .message-content {
   background: white;
   color: #333;
+  border-bottom-left-radius: 4rpx;
 }
 
 .input-container {
   padding: 20rpx;
   background: white;
   border-top: 1rpx solid #eee;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.05);
 }
 
 .style-picker {
   padding: 10rpx 0;
   text-align: center;
   color: #666;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.style-label {
+  color: #999;
+}
+
+.style-value {
+  color: #007AFF;
+  margin-left: 10rpx;
 }
 
 .input-box {
   display: flex;
   align-items: center;
   background: #f6f6f6;
-  border-radius: 10rpx;
-  padding: 10rpx;
+  border-radius: 40rpx;
+  padding: 10rpx 20rpx;
+  margin-top: 10rpx;
 }
 
 input {
@@ -71,6 +160,7 @@ input {
   height: 80rpx;
   padding: 0 20rpx;
   font-size: 28rpx;
+  color: #333;
 }
 
 .send-btn {
@@ -80,15 +170,20 @@ input {
   text-align: center;
   background: #007AFF;
   color: white;
-  border-radius: 10rpx;
+  border-radius: 40rpx;
   font-size: 28rpx;
   margin: 0;
   padding: 0;
+  transition: all 0.3s;
 }
 
 .send-btn[disabled] {
   background: #ccc;
   color: #fff;
+}
+
+.send-btn.sending {
+  opacity: 0.8;
 }
 
 /* 加载动画样式 */

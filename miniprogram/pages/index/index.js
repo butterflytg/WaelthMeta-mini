@@ -8,7 +8,14 @@ Page({
     styleIndex: 0,
     scrollToMessage: '',
     user_name: '',
-    isLoading: false
+    isLoading: false,
+    examples: [
+      '我今天买奶茶花了20元',
+      '我前天花300买了件衣服',
+      '我上个月的支出情况',
+      '帮我统计一下这个月的总支出',
+      '最近一周的消费记录'
+    ]
   },
 
   onLoad() {
@@ -24,6 +31,13 @@ Page({
   onStyleChange(e) {
     this.setData({
       styleIndex: e.detail.value
+    })
+  },
+
+  useExample(e) {
+    const example = e.currentTarget.dataset.example
+    this.setData({
+      inputValue: example
     })
   },
 
