@@ -1,67 +1,143 @@
-# WealthMate - 个人财务助手
+# 财小助 - 微信小程序版
 
-## 项目概述
-WealthMate是一个基于Python开发的个人财务管理助手，它能够帮助用户记录和管理日常收支，提供智能对话式的记账体验。
-
-## 主要功能
-- 智能对话式记账：支持自然语言输入记账信息
-- 多用户管理：支持多个用户独立使用
-- 收支分类：自动对收支进行分类管理
-- 数据统计：提供收支情况的统计和分析
-- 自定义语气：支持轻松、幽默、正式三种回复风格
-
-## 技术架构
-- 前端界面：使用Gradio构建简洁的Web界面
-- 数据存储：使用SQLite数据库
-- 智能对话：集成语言模型实现智能交互
-- 日志系统：使用loguru实现分级日志管理
+一个基于微信小程序的智能记账助手，支持自然语言记账和查询功能。
 
 ## 项目结构
+
 ```
-├── agent/              # 智能代理模块
-│   ├── workflow.py     # 工作流程处理
-│   └── LlmChainGenerate.py  # 语言模型链生成
-├── db/                 # 数据库模块
-│   └── SQLiteDB.py    # SQLite数据库操作
-├── log/               # 日志模块
-│   ├── logger.py      # 日志处理
-│   └── log_config.json # 日志配置
-├── utils/             # 工具模块
-│   ├── GraphUtil.py   # 图形处理工具
-│   └── PrintUtils.py  # 打印工具
-├── prompts/           # 提示词模板
-├── app.py            # Web应用入口
-└── main.py           # 命令行入口
+WealthMeta-mini/
+├── miniprogram/                # 微信小程序前端代码
+│   ├── app.js                  # 小程序入口文件
+│   ├── app.json                # 小程序全局配置
+│   ├── app.wxss                # 小程序全局样式
+│   ├── pages/                  # 页面文件夹
+│   │   └── index/             # 主页面
+│   │       ├── index.js       # 主页面逻辑
+│   │       ├── index.json     # 主页面配置
+│   │       ├── index.wxml     # 主页面模板
+│   │       └── index.wxss     # 主页面样式
+│   └── utils/                  # 工具类文件夹
+│       └── request.js         # 网络请求工具
+├── agent/                      # 后端业务逻辑
+│   └── workflow.py            # 工作流处理
+├── db/                         # 数据库相关
+│   └── SQLiteDB.py            # SQLite数据库操作
+├── log/                        # 日志相关
+│   └── logger.py              # 日志处理
+├── prompts/                    # 提示词模板
+├── utils/                      # 后端工具类
+│   └── LLMUtil.py             # LLM工具类
+├── app.py                      # 后端服务器入口
+├── requirements.txt            # Python依赖
+└── project.config.json         # 微信小程序项目配置
 ```
 
-## 安装说明
-1. 克隆项目代码
-```bash
-git clone https://github.com/butterflytg/WealthMeta.git
-cd WealthMate
-```
+## 功能特点
 
-2. 安装依赖包
+1. 自然语言记账
+   - 支持多种记账表达方式
+   - 智能识别金额和类别
+   - 自动记录时间
+
+2. 智能查询
+   - 支持多维度查询
+   - 自然语言交互
+   - 数据可视化展示
+
+3. 个性化对话
+   - 支持三种对话风格：轻松、幽默、正式
+   - 智能上下文理解
+   - 人性化回复
+
+## 技术栈
+
+- 前端：微信小程序
+- 后端：Python Flask + Gradio
+- 数据库：SQLite
+- AI：LangChain + LLM
+
+## 安装和运行
+
+### 后端服务
+
+1. 安装依赖：
 ```bash
 pip install -r requirements.txt
 ```
 
-## 使用方法
-### Web界面启动
+2. 运行服务器：
 ```bash
 python app.py
 ```
-启动后访问本地Web界面，支持以下功能：
-- 选择语气风格（轻松/幽默/正式）
-- 输入自然语言进行记账
-- 查询历史记录和统计信息
 
-### 命令行启动
-```bash
-python main.py
-```
-在命令行中直接输入记账信息或查询指令。
+服务器将在以下地址运行：
+- Flask API: http://localhost:7860
+- Gradio界面: http://localhost:7861
 
-## 示例用法
-1. 记录支出："我今天买奶茶花了20元"
-2. 记录收入："我昨天收到工资5000元
+### 微信小程序
+
+1. 使用微信开发者工具打开项目
+2. 在 project.config.json 中配置你的小程序 appid
+3. 在 app.js 中修改 baseUrl 为你的服务器地址
+4. 点击"编译"预览小程序
+
+## 开发说明
+
+### 后端开发
+
+- 主要业务逻辑在 `agent/workflow.py` 中
+- API接口在 `app.py` 中定义
+- 数据库操作在 `db/SQLiteDB.py` 中
+
+### 前端开发
+
+- 页面布局在 `pages/index/index.wxml` 中
+- 样式定义在 `pages/index/index.wxss` 中
+- 业务逻辑在 `pages/index/index.js` 中
+- 网络请求封装在 `utils/request.js` 中
+
+## 注意事项
+
+1. 开发环境配置
+   - 确保 Python 环境正确配置
+   - 安装所有必要的依赖包
+   - 配置正确的数据库连接
+
+2. 微信小程序配置
+   - 在开发者工具中开启"不校验合法域名"
+   - 确保服务器地址配置正确
+   - 注意小程序的发布配置
+
+3. 调试说明
+   - 后端日志在 log 目录下
+   - 前端调试使用微信开发者工具
+   - API测试可以使用 Postman 等工具
+
+## 维护说明
+
+1. 代码规范
+   - 遵循 PEP 8 Python 代码规范
+   - 使用 ESLint 进行前端代码检查
+   - 保持代码注释完整
+
+2. 版本控制
+   - 使用 Git 进行版本管理
+   - 遵循语义化版本规范
+   - 保持提交信息清晰
+
+3. 部署流程
+   - 测试环境部署
+   - 生产环境部署
+   - 回滚机制
+
+## 贡献指南
+
+1. Fork 项目
+2. 创建特性分支
+3. 提交更改
+4. 推送到分支
+5. 创建 Pull Request
+
+## 许可证
+
+MIT License

@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="chat-container">
+    <scroll-view scroll-y="true" class="chat-list" scroll-into-view="{{scrollToMessage}}">
+      <block wx:for="{{messages}}" wx:key="index">
+        <view class="message {{item.type === 'user' ? 'user-message' : 'assistant-message'}}" id="msg-{{index}}">
+          <view class="message-content">{{item.content}}</view>
+        </view>
+      </block>
+      <view class="loading" wx:if="{{isLoading}}">
+        <view class="loading-dots">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  
+  <view class="input-container">
+    <picker bindchange="onStyleChange" value="{{styleIndex}}" range="{{styles}}">
+      <view class="style-picker">
+        <text>风格：{{styles[styleIndex]}}</text>
+      </view>
+    </picker>
+    
+    <view class="input-box">
+      <input type="text" value="{{inputValue}}" bindinput="onInput" placeholder="请输入消息..." confirm-type="send" bindconfirm="sendMessage" disabled="{{isLoading}}"/>
+      <button class="send-btn" bindtap="sendMessage" disabled="{{isLoading}}">{{isLoading ? '发送中...' : '发送'}}</button>
+    </view>
+  </view>
+</view> 

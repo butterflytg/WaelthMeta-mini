@@ -2,6 +2,8 @@
 from datetime import datetime
 # 导入gradio库，用于快速构建机器学习和数据科学的Web界面
 import gradio as gr
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 # 从agent.workflow模块导入WorkFlow类，该类可能包含系统的核心业务逻辑
 from agent.workflow import WorkFlow
@@ -9,6 +11,9 @@ from agent.workflow import WorkFlow
 from db.SQLiteDB import SQLiteDB
 # 从log.logger模块导入Logger类，用于记录系统运行日志
 from log.logger import Logger
+
+app = Flask(__name__)
+CORS(app)
 
 # 设置应用的标题为"财小助"
 title = "财小助"
@@ -57,13 +62,13 @@ def predict(message, history, style):
         # 根据用户选择的语气风格对回复进行处理
         if style == "幽默":
             # 如果是幽默风格，在回复前添加"哎嘛~ "
-            response = "哎嘛~ " + response
+            response = "幽默地说： " + response
         elif style == "正式":
             # 如果是正式风格，在回复前添加"尊敬的用户，"
-            response = "尊敬的用户，" + response
+            response = "正式地说： " + response
         else:  # 默认轻松回复
             # 如果是其他风格（默认轻松风格），在回复前添加"嘿嘿~ "
-            response = "嘿嘿~ " + response
+            response = "轻松地说： " + response
         # 将当前用户输入和处理后的回复添加到历史对话记录中
         history.append((message, response))
         # 返回更新后的历史对话记录
@@ -97,6 +102,43 @@ with gr.Blocks(title=title,theme="soft") as demo:
     # 为文本框的提交事件绑定predict函数，设置输入和输出组件
     input_text.submit(predict, inputs=[input_text, chatbot, style_dropdown], outputs=chatbot, queue=True)
 
+@app.route('/')
+def index():
+    return jsonify({
+        "status": "ok",
+        "message": "服务器运行正常"
+    })
+
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    try:
+        data = request.json
+        message = data.get('message', '')
+        style = data.get('style', '轻松')
+        user_name = data.get('user_name', '')
+        
+        # 调用workflow处理消息
+        user_name, response = workflow.run({"require": message, "user_name": user_name})
+        
+        # 根据风格处理回复
+        if style == "幽默":
+            response = "幽默地说： " + response
+        elif style == "正式":
+            response = "正式地说： " + response
+        else:  # 默认轻松回复
+            response = "轻松地说： " + response
+            
+        return jsonify({
+            "message": response,
+            "user_name": user_name
+        })
+    except Exception as e:
+        print(f"Error in chat endpoint: {e}")
+        return jsonify({
+            "message": "很抱歉！服务器出现错误，请稍后重试。",
+            "user_name": user_name
+        }), 500
+
 # 如果该脚本作为主程序运行
 if __name__ == "__main__":
     # 创建一个SQLiteDB对象，连接到名为"test.db"的数据库
@@ -110,5 +152,23 @@ if __name__ == "__main__":
     # 创建一个WorkFlow对象，传入SQLiteDB对象和Logger对象
     workflow = WorkFlow(sqLite, logger)
 
+    import threading
+    
+    # 启动Flask服务器
+    def run_flask():
+        app.run(host='0.0.0.0', port=7860, debug=False, use_reloader=False)
+    
     # 启动Gradio界面
-    demo.launch()
+    def run_gradio():
+        demo.launch(share=True, server_name="0.0.0.0", server_port=7861)
+    
+    # 创建并启动线程
+    flask_thread = threading.Thread(target=run_flask)
+    gradio_thread = threading.Thread(target=run_gradio)
+    
+    flask_thread.start()
+    gradio_thread.start()
+    
+    # 等待线程结束
+    flask_thread.join()
+    gradio_thread.join()
